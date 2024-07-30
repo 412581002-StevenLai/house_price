@@ -14,16 +14,17 @@ RUN pip install --no-cache-dir \
     notebook \
     jupyterlab \
     matplotlib
-RUN useradd -m user
-USER user
+
+#RUN useradd -m user
+#USER user
+
+#VOLUME [ "/root/.vscode-server" ]
 # Set the working directory
 WORKDIR /app
-
-# Copy any local files into the container
-#COPY . /app
 
 # Expose port 8888 for Jupyter Notebook
 EXPOSE 8888
 
 # Set the default command to start Jupyter Notebook
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
+ENTRYPOINT ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
+#CMD ["/bin/bash"]
